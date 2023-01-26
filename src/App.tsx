@@ -5,10 +5,6 @@ interface Repo {
   description: string;
 }
 
-interface AppProps {
-  list: number[];
-}
-
 function App() {
   const [repos, setRepos] = useState<Repo[]>([])
   const [search, setSearch] = useState('');
