@@ -7,11 +7,19 @@ interface Repo {
   language: string;
 }
 
+interface User {
+  public_repos: number;
+}
+
 function App() {
   const [repos, setRepos] = useState<Repo[]>([])
   const [search, setSearch] = useState('');
-  const [user, setUser] = useState('');
+  const [userName, setUserName] = useState('');
   const [error, setError] = useState('');
+
+  const [user, setUser] = useState<User>({public_repos: 0})
+  const [currentPage, setCurrentPage] = useState(1);
+
 
   const filteredRepos = search.length > 0
     ? repos.filter(repo => repo.name.includes(search))
@@ -19,7 +27,19 @@ function App() {
   
   const handleSubmit = (e: { preventDefault: () => void; }) => {
     e.preventDefault();
-    fetch(`https://api.github.com/users/${user}/repos`).then((response) => {
+    fetch(`https://api.github.com/users/${userName}`).then((response) => {
+      if (response.ok) {
+        return response.json()
+          .then(data => setUser(data));
+      }
+      throw new Error('Something went wrong');
+    })
+    .catch((error) => {
+      setRepos([]);
+      setError(error);
+    });
+
+    fetch(`https://api.github.com/users/${userName}/repos?per_page=5`).then((response) => {
       if (response.ok) {
         return response.json()
           .then(data => setRepos(data));
@@ -30,8 +50,35 @@ function App() {
       setRepos([]);
       setError(error);
     });
+    
   }
-  console.log(repos)
+
+  const pageNumbers = [];
+  // const paginate = (pageNumbers: number) => setCurrentPage(pageNumbers);
+  const totalRepos = user.public_repos
+
+  const handlePaginate = (e: { preventDefault: () => void; }) => {
+    e.preventDefault();
+    for (let i= 1; i <= Math.ceil(totalRepos / 5); i++) {
+      fetch(`https://api.github.com/users/${userName}/repos?per_page=5&page=${i}`).then((response) => {
+        if (response.ok) {
+          return response.json()
+          .then(data => setRepos(data));
+        }
+        throw new Error('Something went wrong');
+      })
+      .catch((error) => {
+        setRepos([]);
+        setError(error);
+      });
+    };
+    console.log(repos)
+    
+  }
+
+  for (let i= 1; i <= Math.ceil(totalRepos / 5); i++) {
+    pageNumbers.push(i);
+  };
 
   return (
     <div className="App mt-20">
@@ -50,8 +97,8 @@ function App() {
                 className='border-b border-black'
                 type="text" 
                 placeholder='Digite o nome do usuário'
-                value={user}
-                onChange={e => setUser(e.target.value)}
+                value={userName}
+                onChange={e => setUserName(e.target.value)}
               />
               <button className='mt-4 p-2 bg-slate-200 rounded-md hover:bg-slate-300 duration-300'>
                 Buscar
@@ -103,6 +150,17 @@ function App() {
                       </div>
                     )
                   })}
+                <nav className='pagination-nav'>
+                  <ul className='pagination'>
+                    {pageNumbers.map(number => (
+                      <li key={number} className='page-item'>
+                        <button onClick={handlePaginate} className='page-link'>
+                          {number}
+                        </button>
+                      </li>
+                    ))}
+                  </ul>
+                </nav>
                 </div>
               )}
             </div>
