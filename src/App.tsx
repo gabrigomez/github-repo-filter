@@ -42,7 +42,7 @@ function App() {
             Github Repo Filter
           </p>
         </div>
-        <div className='mb-4'>
+        <div className='flex flex-col items-center mb-4 w-2/4'>
           <div className='mb-4'>
             <form className='flex flex-col items-center' onSubmit={handleSubmit}>
               <input 
@@ -59,7 +59,7 @@ function App() {
             </form>
           </div>
           {repos.length > 0 ? (
-            <div className='flex flex-col'>
+            <div className='flex flex-col w-3/5'>
               <input
                 name='search-repo'
                 className='border-b border-black mb-4' 
@@ -72,7 +72,7 @@ function App() {
                 <div>
                   {filteredRepos.map(repo => {
                     return (
-                      <div className='flex w-3/5' key={repo.name}>
+                      <div className='flex' key={repo.name}>
                         <p className='text-lg font-medium'>
                           {repo.name}
                         </p>
@@ -90,7 +90,7 @@ function App() {
                 <div>
                   {repos.map(repo => {
                     return (
-                      <div className='flex w-3/5' key={repo.name}>
+                      <div className='flex' key={repo.name}>
                         <p className='text-lg font-medium'>
                           {repo.name}
                         </p>
