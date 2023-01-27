@@ -4,6 +4,7 @@ import { GithubLogo } from 'phosphor-react';
 interface Repo {
   name: string;
   description: string;
+  html_url: string;
 }
 
 function App() {
@@ -30,6 +31,7 @@ function App() {
       setError(error);
     });
   }
+  console.log(repos)
 
   return (
     <div className="App mt-20">
@@ -67,33 +69,37 @@ function App() {
                 value={search}
                 />          
               {search.length > 0 ? ( 
-                <ul>
+                <div>
                   {filteredRepos.map(repo => {
                     return (
-                      <li key={repo.name}>
-                        {repo.name}                                        
-                      </li>
+                      <div key={repo.name}>
+                        {repo.name}
+                        <a href={repo.html_url}>Link</a>                                        
+                      </div>
                     )
                   })}
-                </ul>
+                </div>
               ) : (
-                <ul>
+                <div>
                   {repos.map(repo => {
                     return (
-                      <li key={repo.name}>
+                      <div key={repo.name}>
                         {repo.name}
-                      </li>
+                        <a href={repo.html_url}>Link</a>
+                      </div>
                     )
                   })}
-                </ul>
+                </div>
               )}
             </div>
           
           ) : (
-            <div>
+            <div className='flex justify-center'>
               {error ? (
                 <div>
-                  Usuário não encontrado
+                  <p className='text-red-500'>
+                    Usuário não encontrado
+                  </p>
                 </div>
               ) : (
                 <>
