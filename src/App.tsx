@@ -1,10 +1,10 @@
 import { useState } from 'react';
-import { GithubLogo } from 'phosphor-react';
+import { ArrowSquareUpRight, GithubLogo } from 'phosphor-react';
 
 interface Repo {
   name: string;
-  description: string;
   html_url: string;
+  language: string;
 }
 
 function App() {
@@ -44,7 +44,7 @@ function App() {
         </div>
         <div className='mb-4'>
           <div className='mb-4'>
-            <form onSubmit={handleSubmit}>
+            <form className='flex flex-col items-center' onSubmit={handleSubmit}>
               <input 
                 name='search-user'
                 className='border-b border-black'
@@ -53,13 +53,13 @@ function App() {
                 value={user}
                 onChange={e => setUser(e.target.value)}
               />
-              <button className='ml-4 p-1 bg-slate-300 rounded-md'>
+              <button className='mt-4 p-2 bg-slate-200 rounded-md hover:bg-slate-300 duration-300'>
                 Buscar
               </button>
             </form>
           </div>
           {repos.length > 0 ? (
-            <div>
+            <div className='flex flex-col'>
               <input
                 name='search-repo'
                 className='border-b border-black mb-4' 
@@ -72,9 +72,16 @@ function App() {
                 <div>
                   {filteredRepos.map(repo => {
                     return (
-                      <div key={repo.name}>
-                        {repo.name}
-                        <a href={repo.html_url}>Link</a>                                        
+                      <div className='flex w-3/5' key={repo.name}>
+                        <p className='text-lg font-medium'>
+                          {repo.name}
+                        </p>
+                        <p className='flex ml-2 text-sm text-blue-400 items-center'>
+                          {repo.language}
+                        </p>
+                        <a className='flex items-center' href={repo.html_url}>
+                          <ArrowSquareUpRight className='text-xl ml-2 hover:text-blue-800' />
+                        </a>                                        
                       </div>
                     )
                   })}
@@ -83,9 +90,16 @@ function App() {
                 <div>
                   {repos.map(repo => {
                     return (
-                      <div key={repo.name}>
-                        {repo.name}
-                        <a href={repo.html_url}>Link</a>
+                      <div className='flex w-3/5' key={repo.name}>
+                        <p className='text-lg font-medium'>
+                          {repo.name}
+                        </p>
+                        <p className='flex ml-2 text-sm text-blue-400 items-center'>
+                          {repo.language}
+                        </p>
+                        <a className='flex items-center' href={repo.html_url}>
+                          <ArrowSquareUpRight className='text-xl ml-2 hover:text-blue-800' />
+                        </a>  
                       </div>
                     )
                   })}
@@ -97,7 +111,7 @@ function App() {
             <div className='flex justify-center'>
               {error ? (
                 <div>
-                  <p className='text-red-500'>
+                  <p className='text-red-500 font-bold'>
                     Usuário não encontrado
                   </p>
                 </div>
