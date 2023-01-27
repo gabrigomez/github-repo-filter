@@ -26,7 +26,8 @@ function App() {
       throw new Error('Something went wrong');
     })
     .catch((error) => {
-      setError(error)
+      setRepos([]);
+      setError(error);
     });
   }
 
@@ -39,7 +40,7 @@ function App() {
             Github Repo Filter
           </p>
         </div>
-        <div>
+        <div className='mb-4'>
           <div className='mb-4'>
             <form onSubmit={handleSubmit}>
               <input 
