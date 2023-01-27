@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { GithubLogo } from 'phosphor-react';
 
 interface Repo {
   name: string;
@@ -30,69 +31,77 @@ function App() {
   }
 
   return (
-    <div className="App flex flex-col items-center mt-20">
-      <div>
-        <div className='mb-4'>
-          <form onSubmit={handleSubmit}>
-            <input 
-              name='search-user'
-              className='border-b border-black'
-              type="text" 
-              placeholder='Digite o nome do usuário'
-              value={user}
-              onChange={e => setUser(e.target.value)}
-            />
-            <button className='ml-4 p-1 bg-slate-300 rounded-md'>
-              Buscar
-            </button>
-          </form>
+    <div className="App mt-20">
+      <div className='flex flex-col items-center'>
+        <div className='flex flex-col mb-4 items-center'>
+          <GithubLogo className='text-9xl text-gray-900' />
+          <p className='text-3xl font-medium'>
+            Github Repo Filter
+          </p>
         </div>
-        {repos.length > 0 ? (
-          <div>
-            <input
-              name='search-repo'
-              className='border-b border-black mb-4' 
-              type="text"
-              placeholder='Filtre o repositório'
-              onChange={e => setSearch(e.target.value)}
-              value={search}
-              />          
-            {search.length > 0 ? ( 
-              <ul>
-                {filteredRepos.map(repo => {
-                  return (
-                    <li key={repo.name}>
-                      {repo.name}                                        
-                    </li>
-                  )
-                })}
-              </ul>
-            ) : (
-              <ul>
-                {repos.map(repo => {
-                  return (
-                    <li key={repo.name}>
-                      {repo.name}
-                    </li>
-                  )
-                })}
-              </ul>
-            )}
+        <div>
+          <div className='mb-4'>
+            <form onSubmit={handleSubmit}>
+              <input 
+                name='search-user'
+                className='border-b border-black'
+                type="text" 
+                placeholder='Digite o nome do usuário'
+                value={user}
+                onChange={e => setUser(e.target.value)}
+              />
+              <button className='ml-4 p-1 bg-slate-300 rounded-md'>
+                Buscar
+              </button>
+            </form>
           </div>
-        
-        ) : (
-          <div>
-            {error ? (
-              <div>
-                Usuário não encontrado
-              </div>
-            ) : (
-              <>
-              </>
-            )}        
-          </div>
-        )}      
-      </div>      
+          {repos.length > 0 ? (
+            <div>
+              <input
+                name='search-repo'
+                className='border-b border-black mb-4' 
+                type="text"
+                placeholder='Filtre o repositório'
+                onChange={e => setSearch(e.target.value)}
+                value={search}
+                />          
+              {search.length > 0 ? ( 
+                <ul>
+                  {filteredRepos.map(repo => {
+                    return (
+                      <li key={repo.name}>
+                        {repo.name}                                        
+                      </li>
+                    )
+                  })}
+                </ul>
+              ) : (
+                <ul>
+                  {repos.map(repo => {
+                    return (
+                      <li key={repo.name}>
+                        {repo.name}
+                      </li>
+                    )
+                  })}
+                </ul>
+              )}
+            </div>
+          
+          ) : (
+            <div>
+              {error ? (
+                <div>
+                  Usuário não encontrado
+                </div>
+              ) : (
+                <>
+                </>
+              )}        
+            </div>
+          )}
+        </div>
+      </div>        
     </div>
   );
 }
