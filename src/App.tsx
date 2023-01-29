@@ -80,7 +80,7 @@ function App() {
         <div className='flex flex-col mb-4 items-center'>
           <GithubLogo className='text-9xl text-gray-900' />
           <p className='text-3xl font-medium'>
-            Github Repo Filter
+            Github Repo Finder
           </p>
         </div>
         <div className='flex flex-col items-center mb-4 w-2/4'>
