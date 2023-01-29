@@ -108,7 +108,7 @@ function App() {
                 value={search}
                 />          
               {search.length > 0 ? ( 
-                <div>
+                <div>                  
                   {filteredRepos.map(repo => {
                     return (
                       <div className='flex' key={repo.name}>
@@ -126,22 +126,24 @@ function App() {
                   })}
                 </div>
               ) : (
-                <div>
-                  {repos.map(repo => {
-                    return (
-                      <div className='flex' key={repo.name}>
-                        <p className='text-lg font-medium'>
-                          {repo.name}
-                        </p>
-                        <p className='flex ml-2 text-sm text-blue-400 items-center'>
-                          {repo.language}
-                        </p>
-                        <a className='flex items-center' href={repo.html_url}>
-                          <ArrowSquareUpRight className='text-xl ml-2 hover:text-blue-800' />
-                        </a>  
-                      </div>
-                    )
-                  })}
+                <div className='flex flex-col h-[330px] justify-between'>
+                  <div>
+                    {repos.map(repo => {
+                      return (
+                        <div className='flex' key={repo.name}>
+                          <p className='text-lg font-medium'>
+                            {repo.name}
+                          </p>
+                          <p className='flex ml-2 text-sm text-blue-400 items-center'>
+                            {repo.language}
+                          </p>
+                          <a className='flex items-center' href={repo.html_url}>
+                            <ArrowSquareUpRight className='text-xl ml-2 hover:text-blue-800' />
+                          </a>  
+                        </div>
+                      )
+                    })}
+                  </div>
                 <nav className='flex justify-center text-md' >
                   <ul className='flex'>
                     {pageNumbers.map(number => (
