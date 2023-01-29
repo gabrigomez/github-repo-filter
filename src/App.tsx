@@ -16,14 +16,19 @@ function App() {
   const [search, setSearch] = useState('');
   const [userName, setUserName] = useState('');
   const [error, setError] = useState('');
-
   const [user, setUser] = useState<User>({public_repos: 0})
-  const [currentPage, setCurrentPage] = useState(1);
 
+  const totalRepos = user.public_repos;
+  const pageNumbers: number[] = [];
 
+  for (let i= 1; i <= Math.ceil(totalRepos / 10); i++) {
+    pageNumbers.push(i);
+  };
+  
   const filteredRepos = search.length > 0
     ? repos.filter(repo => repo.name.includes(search))
-    : []
+    : [];
+  
   
   const handleSubmit = (e: { preventDefault: () => void; }) => {
     e.preventDefault();
@@ -39,7 +44,7 @@ function App() {
       setError(error);
     });
 
-    fetch(`https://api.github.com/users/${userName}/repos?per_page=5`).then((response) => {
+    fetch(`https://api.github.com/users/${userName}/repos?per_page=10`).then((response) => {
       if (response.ok) {
         return response.json()
           .then(data => setRepos(data));
@@ -53,14 +58,8 @@ function App() {
     
   }
 
-  const pageNumbers = [];
-  // const paginate = (pageNumbers: number) => setCurrentPage(pageNumbers);
-  const totalRepos = user.public_repos
-
-  const handlePaginate = (e: { preventDefault: () => void; }) => {
-    e.preventDefault();
-    for (let i= 1; i <= Math.ceil(totalRepos / 5); i++) {
-      fetch(`https://api.github.com/users/${userName}/repos?per_page=5&page=${i}`).then((response) => {
+  const handlePaginate = (number:Number) => {
+      fetch(`https://api.github.com/users/${userName}/repos?per_page=10&page=${number}`).then((response) => {
         if (response.ok) {
           return response.json()
           .then(data => setRepos(data));
@@ -70,15 +69,8 @@ function App() {
       .catch((error) => {
         setRepos([]);
         setError(error);
-      });
-    };
-    console.log(repos)
-    
+      });    
   }
-
-  for (let i= 1; i <= Math.ceil(totalRepos / 5); i++) {
-    pageNumbers.push(i);
-  };
 
   return (
     <div className="App mt-20">
@@ -154,7 +146,7 @@ function App() {
                   <ul className='pagination'>
                     {pageNumbers.map(number => (
                       <li key={number} className='page-item'>
-                        <button onClick={handlePaginate} className='page-link'>
+                        <button onClick={() => handlePaginate(number)} className='page-link'>
                           {number}
                         </button>
                       </li>
