@@ -142,11 +142,13 @@ function App() {
                       </div>
                     )
                   })}
-                <nav className='pagination-nav'>
-                  <ul className='pagination'>
+                <nav className='flex justify-center text-md' >
+                  <ul className='flex'>
                     {pageNumbers.map(number => (
-                      <li key={number} className='page-item'>
-                        <button onClick={() => handlePaginate(number)} className='page-link'>
+                      <li key={number} className='m-1'>
+                        <button 
+                          className='hover:bg-gray-100 hover:text-blue-700 leading-tight py-2 px-3 rounded-md' 
+                          onClick={() => handlePaginate(number)}>
                           {number}
                         </button>
                       </li>
