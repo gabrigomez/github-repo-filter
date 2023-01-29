@@ -9,6 +9,8 @@ interface Repo {
 
 interface User {
   public_repos: number;
+  avatar_url: string;
+  login: string;   
 }
 
 function App() {
@@ -16,7 +18,7 @@ function App() {
   const [search, setSearch] = useState('');
   const [userName, setUserName] = useState('');
   const [error, setError] = useState('');
-  const [user, setUser] = useState<User>({public_repos: 0})
+  const [user, setUser] = useState<User>({public_repos: 0, avatar_url: '', login: ''})
 
   const totalRepos = user.public_repos;
   const pageNumbers: number[] = [];
@@ -99,6 +101,14 @@ function App() {
           </div>
           {repos.length > 0 ? (
             <div className='flex flex-col w-3/5'>
+              <div className='flex items-center justify-center my-5'>
+                <img src={user.avatar_url} alt="" className='h-32 w-32 rounded-full mr-4 border border-blue-400' />
+                <div className='flex flex-col'>
+                  <p className='text-xl font-semibold'>{user.login}</p>
+                  <p className='text-xl'>Total of repositories: {user.public_repos}</p>
+                </div>
+
+              </div>
               <input
                 name='search-repo'
                 className='border-b border-black mb-4' 
