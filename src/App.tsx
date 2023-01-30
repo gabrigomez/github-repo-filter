@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { ArrowSquareUpRight, GithubLogo } from 'phosphor-react';
+import { ArrowSquareUpRight, GithubLogo, MagnifyingGlass } from 'phosphor-react';
 
 interface Repo {
   name: string;
@@ -87,7 +87,7 @@ function App() {
         </div>
         <div className='flex flex-col items-center mb-4 w-2/4'>
           <div className='mb-4'>
-            <form className='flex flex-col items-center' onSubmit={handleSubmit}>
+            <form className='flex items-center' onSubmit={handleSubmit}>
               <input 
                 name='search-user'
                 className='border-b border-black'
@@ -96,8 +96,8 @@ function App() {
                 value={userName}
                 onChange={e => setUserName(e.target.value)}
               />
-              <button className='mt-4 p-2 bg-slate-200 rounded-md hover:bg-blue-300 duration-300'>
-                Buscar
+              <button className='ml-4 p-1 bg-slate-200 rounded-md hover:bg-blue-300 duration-300'>
+                <MagnifyingGlass className='text-2xl' />
               </button>
             </form>
           </div>
@@ -114,7 +114,7 @@ function App() {
                   </p>
                   <a className='flex justify-center' href={user.html_url}>
                     <GithubLogo 
-                      className='text-slate-400 hover:text-blue-400 text-3xl p-1 border 
+                      className='text-slate-400 hover:text-blue-400 text-4xl p-1 border 
                       rounded-full border-slate-200 hover:bg-slate-100 duration-200' />
                   </a>                  
                 </div>
