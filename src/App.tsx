@@ -72,13 +72,20 @@ function App() {
   }
 
   return (
-    <div className="App mt-20">
+    <div className="App mt-12 flex flex-col items-center">      
       <div className='flex flex-col items-center'>
         <div className='flex flex-col mb-8 items-center'>
           <GithubLogo className='text-9xl text-gray-900' />
           <p className='text-3xl font-medium'>
             Github Repo Finder
           </p>
+          <div className='group'>
+            <a 
+              className='text-xs text-slate-300 group-hover:text-blue-400 duration-300'
+              href='https://github.com/gabrigomez/github-repo-finder'>
+                develop by gabrigomez - 2023
+            </a>
+          </div>
         </div>
         <div className='flex flex-col items-center mb-4 w-2/4'>
           <div className='mb-4'>
@@ -199,7 +206,7 @@ function App() {
             )}         
           </div>        
         </div>
-      </div>
+      </div>      
     </div>
   );
 }
