@@ -30,8 +30,7 @@ function App() {
   const filteredRepos = search.length > 0
     ? repos.filter(repo => repo.name.includes(search))
     : [];
-  
-  
+    
   const handleSubmit = (e: { preventDefault: () => void; }) => {
     e.preventDefault();
     fetch(`https://api.github.com/users/${userName}`).then((response) => {
@@ -77,7 +76,7 @@ function App() {
   return (
     <div className="App mt-20">
       <div className='flex flex-col items-center'>
-        <div className='flex flex-col mb-4 items-center'>
+        <div className='flex flex-col mb-8 items-center'>
           <GithubLogo className='text-9xl text-gray-900' />
           <p className='text-3xl font-medium'>
             Github Repo Finder
@@ -94,18 +93,22 @@ function App() {
                 value={userName}
                 onChange={e => setUserName(e.target.value)}
               />
-              <button className='mt-4 p-2 bg-slate-200 rounded-md hover:bg-slate-300 duration-300'>
+              <button className='mt-4 p-2 bg-slate-200 rounded-md hover:bg-blue-300 duration-300'>
                 Buscar
               </button>
             </form>
           </div>
           {repos.length > 0 ? (
             <div className='flex flex-col w-3/5'>
-              <div className='flex items-center justify-center my-5'>
+              <div className='flex items-center justify-center my-7'>
                 <img src={user.avatar_url} alt="" className='h-32 w-32 rounded-full mr-4 border border-blue-400' />
                 <div className='flex flex-col'>
-                  <p className='text-xl font-semibold'>{user.login}</p>
-                  <p className='text-xl'>Total of repositories: {user.public_repos}</p>
+                  <p className='text-xl font-semibold'>
+                    {user.login}
+                  </p>
+                  <p className='text-xl'>
+                    Total of repositories: {user.public_repos}
+                  </p>
                 </div>
 
               </div>
