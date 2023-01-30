@@ -1,18 +1,6 @@
 import { useState } from 'react';
 import { CircleNotch, GithubLogo, MagnifyingGlass } from 'phosphor-react';
-
-interface Repo {
-  name: string;
-  html_url: string;
-  language: string;
-}
-
-interface User {
-  public_repos: number;
-  avatar_url: string;
-  login: string;
-  html_url: string;   
-}
+import { Repo, User } from './interfaces';
 
 function App() {
   const [repos, setRepos] = useState<Repo[]>([])
