@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { ArrowSquareUpRight, GithubLogo, MagnifyingGlass } from 'phosphor-react';
+import { GithubLogo, MagnifyingGlass } from 'phosphor-react';
 
 interface Repo {
   name: string;
@@ -133,15 +133,12 @@ function App() {
                   {filteredRepos.map(repo => {
                     return (
                       <div className='flex' key={repo.name}>
-                        <p className='text-lg font-medium'>
+                        <a className='text-lg font-medium hover:text-blue-800' href={repo.html_url}>
                           {repo.name}
-                        </p>
+                        </a>
                         <p className='flex ml-2 text-sm text-blue-400 items-center'>
                           {repo.language}
-                        </p>
-                        <a className='flex items-center' href={repo.html_url}>
-                          <ArrowSquareUpRight className='text-xl ml-2 hover:text-blue-800' />
-                        </a>                                        
+                        </p>                                      
                       </div>
                     )
                   })}
@@ -152,15 +149,12 @@ function App() {
                     {repos.map(repo => {
                       return (
                         <div className='flex' key={repo.name}>
-                          <p className='text-lg font-medium'>
+                          <a className='text-lg font-medium hover:text-blue-600' href={repo.html_url}>
                             {repo.name}
-                          </p>
-                          <p className='flex ml-2 text-sm text-blue-400 items-center'>
+                          </a>
+                          <p className='flex ml-1 text-xs text-blue-500 items-center'>
                             {repo.language}
-                          </p>
-                          <a className='flex items-center' href={repo.html_url}>
-                            <ArrowSquareUpRight className='text-xl ml-2 hover:text-blue-800' />
-                          </a>  
+                          </p> 
                         </div>
                       )
                     })}
