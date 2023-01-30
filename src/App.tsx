@@ -85,7 +85,7 @@ function App() {
             <form className='flex items-center' onSubmit={handleSubmit}>
               <input 
                 name='search-user'
-                className='border-b border-black'
+                className='border-b border-black focus:border-blue-500 focus:outline-none'
                 type="text" 
                 placeholder='Digite o nome do usuário'
                 value={userName}
