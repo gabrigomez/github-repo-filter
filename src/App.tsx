@@ -72,8 +72,8 @@ function App() {
   }
 
   return (
-    <div className="App mt-12 flex flex-col items-center">      
-      <div className='flex flex-col items-center'>
+    <div className="App mt-12 flex flex-col w-screen h-screen items-center">      
+      <div className='flex flex-col items-center w-full h-full'>
         <div className='flex flex-col mb-8 items-center'>
           <GithubLogo className='text-9xl text-gray-900' />
           <p className='text-3xl font-medium'>
@@ -87,7 +87,7 @@ function App() {
             </a>
           </div>
         </div>
-        <div className='flex flex-col items-center mb-4 w-2/4'>
+        <div className='flex flex-col items-center mb-4 w-full h-full p-4 md:w-2/4'>
           <div className='mb-4'>
             <form className='flex items-center' onSubmit={handleSubmit}>
               <input 
@@ -105,21 +105,25 @@ function App() {
           </div>
           <div>
             {loading? (
-              <div className='flex flex-col w-[350px] h-[350px] items-center justify-center'>
+              <div className='flex flex-col items-center justify-center'>
                 <CircleNotch className='animate-spin text-5xl text-slate-300' />
               </div>
             ) : 
             (
               <div>
                 {repos.length > 0 ? (
-                  <div className='flex flex-col w-[350px]'>
-                    <div className='flex items-center justify-center my-7'>
-                      <img src={user.avatar_url} alt="" className='h-32 w-32 rounded-full mr-4 border border-blue-400' />
+                  <div className='flex flex-col'>
+                    <div className='flex items-center justify-center my-7 p-2 shadow-lg hover:shadow-sm duration-300'>
+                      <img 
+                        src={user.avatar_url} 
+                        alt="" 
+                        className='w-20 h-20 sm:h-32 sm:w-32 rounded-full mr-4 border border-blue-400' 
+                      />
                       <div className='flex flex-col'>
-                        <p className='flex justify-center text-3xl font-semibold'>
+                        <p className='flex justify-center text-2xl font-semibold'>
                           {user.login}
                         </p>
-                        <p className='flex justify-center text-md mb-2'>
+                        <p className='flex justify-center text-sm mb-2'>
                           Total of repositories: {user.public_repos}
                         </p>
                         <a className='flex justify-center' href={user.html_url}>
@@ -127,8 +131,7 @@ function App() {
                             className='text-slate-400 hover:text-blue-400 text-4xl p-1 border 
                             rounded-full border-slate-200 hover:bg-slate-100 duration-200' />
                         </a>                  
-                      </div>
-      
+                      </div>      
                     </div>
                     <input
                       name='search-repo'
@@ -143,7 +146,7 @@ function App() {
                         {filteredRepos.map(repo => {
                           return (
                             <div className='flex' key={repo.name}>
-                              <a className='text-lg font-medium hover:text-blue-800' href={repo.html_url}>
+                              <a className='text-md font-medium hover:text-blue-800' href={repo.html_url}>
                                 {repo.name}
                               </a>
                               <p className='flex ml-2 text-sm text-blue-400 items-center'>
@@ -160,7 +163,7 @@ function App() {
                           {repos.map(repo => {
                             return (
                               <div className='flex' key={repo.name}>
-                                <a className='text-lg font-medium hover:text-blue-600' href={repo.html_url}>
+                                <a className='text-md font-medium hover:text-blue-600' href={repo.html_url}>
                                   {repo.name}
                                 </a>
                                 <p className='flex ml-1 text-xs text-blue-500 items-center'>
