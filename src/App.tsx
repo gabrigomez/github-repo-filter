@@ -10,7 +10,8 @@ interface Repo {
 interface User {
   public_repos: number;
   avatar_url: string;
-  login: string;   
+  login: string;
+  html_url: string;   
 }
 
 function App() {
@@ -18,7 +19,7 @@ function App() {
   const [search, setSearch] = useState('');
   const [userName, setUserName] = useState('');
   const [error, setError] = useState('');
-  const [user, setUser] = useState<User>({public_repos: 0, avatar_url: '', login: ''})
+  const [user, setUser] = useState<User>({public_repos: 0, avatar_url: '', login: '', html_url: ''})
 
   const totalRepos = user.public_repos;
   const pageNumbers: number[] = [];
@@ -73,6 +74,8 @@ function App() {
       });    
   }
 
+  console.log(user)
+
   return (
     <div className="App mt-20">
       <div className='flex flex-col items-center'>
@@ -103,12 +106,17 @@ function App() {
               <div className='flex items-center justify-center my-7'>
                 <img src={user.avatar_url} alt="" className='h-32 w-32 rounded-full mr-4 border border-blue-400' />
                 <div className='flex flex-col'>
-                  <p className='text-xl font-semibold'>
+                  <p className='flex justify-center text-3xl font-semibold'>
                     {user.login}
                   </p>
-                  <p className='text-xl'>
+                  <p className='flex justify-center text-md mb-2'>
                     Total of repositories: {user.public_repos}
                   </p>
+                  <a className='flex justify-center' href={user.html_url}>
+                    <GithubLogo 
+                      className='text-slate-400 hover:text-blue-400 text-3xl p-1 border 
+                      rounded-full border-slate-200 hover:bg-slate-100 duration-200' />
+                  </a>                  
                 </div>
 
               </div>
