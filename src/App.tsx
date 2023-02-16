@@ -149,7 +149,7 @@ function App() {
                               <a className='text-md font-medium hover:text-blue-800' href={repo.html_url}>
                                 {repo.name}
                               </a>
-                              <p className='flex ml-2 text-sm text-blue-400 items-center'>
+                              <p className='flex ml-2 text-xs text-blue-400 items-center'>
                                 {repo.language}
                               </p>                                      
                             </div>
