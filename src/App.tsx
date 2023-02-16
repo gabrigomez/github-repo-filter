@@ -74,7 +74,7 @@ function App() {
   return (
     <div className="App mt-12 flex flex-col w-screen h-screen items-center">      
       <div className='flex flex-col items-center w-full h-full'>
-        <div className='flex flex-col mb-8 items-center'>
+        <div className='flex flex-col mb-6 items-center'>
           <GithubLogo className='text-9xl text-gray-900' />
           <p className='text-3xl font-medium'>
             Github Repo Finder
