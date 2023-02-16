@@ -81,7 +81,7 @@ function App() {
           </p>
           <div className='group'>
             <a 
-              className='text-xs text-slate-300 group-hover:text-blue-400 duration-300'
+              className='text-sm text-slate-300 group-hover:text-blue-400 duration-300'
               href='https://github.com/gabrigomez/github-repo-finder'>
                 develop by gabrigomez - 2023
             </a>
@@ -150,7 +150,7 @@ function App() {
                                 {repo.name}
                               </a>
                               {repo.language && 
-                                <p className='flex ml-1 p-1 text-xs bg-slate-100 rounded-full text-blue-500 items-center'>
+                                <p className='flex ml-1 p-1 text-xxs bg-slate-100 rounded-full text-blue-500 items-center'>
                                   {repo.language}
                                 </p> 
                               }                                    
@@ -165,11 +165,11 @@ function App() {
                           {repos.map(repo => {
                             return (
                               <div className='flex m-1' key={repo.name}>
-                                <a className='text-xl font-medium hover:text-blue-600' href={repo.html_url}>
+                                <a className='text-md font-medium hover:text-blue-600' href={repo.html_url}>
                                   {repo.name}
                                 </a>
                                 {repo.language && 
-                                  <p className='flex ml-1 p-1 text-xs bg-slate-100 rounded-full text-blue-500 items-center'>
+                                  <p className='flex ml-1 p-1 text-xxs bg-slate-100 rounded-full text-blue-500 items-center'>
                                     {repo.language}
                                   </p> 
                                 }
