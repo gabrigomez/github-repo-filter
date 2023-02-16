@@ -149,25 +149,27 @@ function App() {
                               <a className='text-md font-medium hover:text-blue-800' href={repo.html_url}>
                                 {repo.name}
                               </a>
-                              <p className='flex ml-2 text-xs text-blue-400 items-center'>
-                                {repo.language}
-                              </p>                                      
+                              {repo.language && 
+                                <p className='flex ml-1 p-1 text-xs bg-slate-100 rounded-full text-blue-500 items-center'>
+                                  {repo.language}
+                                </p> 
+                              }                                    
                             </div>
                           )
                         })}
                       </div>
                     ) : 
                     (
-                      <div className='flex flex-col h-[330px] justify-between'>
-                        <div>
+                      <div className='flex flex-col h-[350px] w-[320px] justify-between'>
+                        <div className='h-full'>
                           {repos.map(repo => {
                             return (
-                              <div className='flex' key={repo.name}>
-                                <a className='text-md font-medium hover:text-blue-600' href={repo.html_url}>
+                              <div className='flex m-1' key={repo.name}>
+                                <a className='text-xl font-medium hover:text-blue-600' href={repo.html_url}>
                                   {repo.name}
                                 </a>
                                 {repo.language && 
-                                  <p className='flex ml-1 text-xs bg-slate-300 rounded-full text-blue-500 items-center'>
+                                  <p className='flex ml-1 p-1 text-xs bg-slate-100 rounded-full text-blue-500 items-center'>
                                     {repo.language}
                                   </p> 
                                 }
